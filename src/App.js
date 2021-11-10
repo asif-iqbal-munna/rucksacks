@@ -4,7 +4,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Home from "./pages/Home/Home/Home";
 import Shop from "./pages/Shop/Shop";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Something from "./pages/Something/Something";
+import ReviewOrder from "./pages/ReviewOrder/ReviewOrder";
 
 const theme = createTheme({
   palette: {
@@ -34,8 +34,8 @@ function App() {
           <Route path="/shop">
             <Shop />
           </Route>
-          <Route path="/something">
-            <Something />
+          <Route path="/revieworder">
+            <ReviewOrder />
           </Route>
           <Route path="*">
             <NotFound />
