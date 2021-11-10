@@ -103,7 +103,7 @@ const Header = () => {
           <Toolbar>
             <NavLink to="/" style={{ textDecoration: "none" }}>
               <Typography
-                variant="h4"
+                variant="h3"
                 noWrap
                 component="div"
                 color="secondary"

@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
@@ -12,7 +12,26 @@ const bannerBg = {
 const Banner = () => {
   return (
     <Box style={bannerBg}>
-      <Box></Box>
+      <Container>
+        <Box
+          style={{
+            paddingTop: "20vh",
+            maxWidth: "500px",
+          }}
+        >
+          <Box
+            style={{
+              background: "rgba(128, 128, 128, 0.54)",
+              padding: "20px",
+            }}
+          >
+            <Typography variant="h2">Trendy Backpacks</Typography>
+            <Typography variant="h4">Own Styles</Typography>
+            <Typography variant="h1">50% OFF</Typography>
+            <Button variant="contained">Shop Now</Button>
+          </Box>
+        </Box>
+      </Container>
     </Box>
   );
 };
