@@ -14,7 +14,7 @@ const inputBtn = {
   marginTop: "10px",
 };
 
-const Login = () => {
+const Register = () => {
   const {
     register,
     handleSubmit,
@@ -32,6 +32,16 @@ const Login = () => {
         }}
       >
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            required
+            label="Name"
+            fullWidth
+            type="text"
+            variant="filled"
+            margin="dense"
+            // defaultValue={user?.email}
+            {...register("name", { required: true })}
+          />
           <TextField
             required
             label="Email"
@@ -58,13 +68,13 @@ const Login = () => {
           <input
             style={inputBtn}
             type="submit"
-            value="Log In"
+            value="Register"
             component="button"
           />
           <Typography variant="subtitle1">
-            New Here?{" "}
-            <Link style={{ textDecoration: "none" }} to="/register">
-              Please Register.
+            Already User?{" "}
+            <Link style={{ textDecoration: "none" }} to="/login">
+              Please LogIn.
             </Link>
           </Typography>
         </Box>
@@ -73,4 +83,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

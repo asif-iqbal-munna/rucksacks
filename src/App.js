@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ReviewOrder from "./pages/ReviewOrder/ReviewOrder";
 import OrderProduct from "./pages/OrderProduct/OrderProduct";
 import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 const theme = createTheme({
   palette: {
@@ -87,6 +88,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
           <Route path="/revieworder">
             <ReviewOrder />

@@ -6,6 +6,16 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import Header from "../shared/Header/Header";
 
+const inputBtn = {
+  backgroundColor: "#961010",
+  padding: "10px 18px",
+  outline: "none",
+  borderRadius: "5px",
+  color: "#fff",
+  fontSize: "16px",
+  marginTop: "10px",
+};
+
 const OrderProduct = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
@@ -17,16 +27,6 @@ const OrderProduct = () => {
       .catch((err) => console.log(err));
   }, [id]);
   console.log(product);
-
-  const inputBtn = {
-    backgroundColor: "#961010",
-    padding: "10px 18px",
-    outline: "none",
-    borderRadius: "5px",
-    color: "#fff",
-    fontSize: "16px",
-    marginTop: "10px",
-  };
 
   const {
     register,
