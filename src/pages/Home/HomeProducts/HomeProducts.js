@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SingleProduct from "../../shared/SingleProduct/SingleProduct";
@@ -15,7 +15,10 @@ const HomeProducts = () => {
       });
   }, []);
   return (
-    <Container sx={{ mt: 5 }}>
+    <Container sx={{ my: 5 }}>
+      <Typography variant="h3" sx={{ mb: 3 }} color="primary">
+        Products
+      </Typography>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}

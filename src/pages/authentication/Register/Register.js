@@ -1,8 +1,15 @@
-import { Container, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Container,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const inputBtn = {
   backgroundColor: "#961010",
@@ -21,10 +28,14 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const { user, createUser, error } = useAuth();
+
+  const onSubmit = (data) => {
+    createUser(data.email, data.name);
+  };
 
   return (
-    <Container style={{ height: "100vh" }}>
+    <Container style={{ height: "100vh" }} sx={{ mt: 5 }}>
       <Box
         style={{
           display: "flex",
@@ -77,6 +88,19 @@ const Register = () => {
               Please LogIn.
             </Link>
           </Typography>
+          {user?.email && !error && (
+            <Alert severity="success">
+              <AlertTitle>Success</AlertTitle>
+              Your Account Has Been Created Successfully
+            </Alert>
+          )}
+
+          {error && !user?.email && (
+            <Alert severity="error">
+              <AlertTitle>Error</AlertTitle>
+              {error}
+            </Alert>
+          )}
         </Box>
       </Box>
     </Container>

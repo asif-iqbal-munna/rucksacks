@@ -6,8 +6,9 @@ import Shop from "./pages/Shop/Shop";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ReviewOrder from "./pages/ReviewOrder/ReviewOrder";
 import OrderProduct from "./pages/OrderProduct/OrderProduct";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
+import Login from "./pages/authentication/Login/Login";
+import Register from "./pages/authentication/Register/Register";
+import AuthProvider from "./context/AuthProvider";
 
 const theme = createTheme({
   palette: {
@@ -42,12 +43,12 @@ theme.typography.h4 = {
   },
 };
 theme.typography.h3 = {
-  fontSize: "1.5rem",
+  fontSize: "1.3rem",
   "@media (min-width:600px)": {
-    fontSize: "1.8rem",
+    fontSize: "1.6rem",
   },
   [theme.breakpoints.up("md")]: {
-    fontSize: "2.2rem",
+    fontSize: "2rem",
   },
 };
 theme.typography.h2 = {
@@ -72,34 +73,36 @@ theme.typography.h1 = {
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/shop">
-            <Shop />
-          </Route>
-          <Route path="/product/:id">
-            <OrderProduct />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/revieworder">
-            <ReviewOrder />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/shop">
+              <Shop />
+            </Route>
+            <Route path="/product/:id">
+              <OrderProduct />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/revieworder">
+              <ReviewOrder />
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

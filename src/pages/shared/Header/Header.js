@@ -8,12 +8,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import { Container } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Button, Container } from "@mui/material";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { user, userSignOut } = useAuth();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -52,15 +54,13 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>{user?.name}</MenuItem>
     </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
-      sx={{ height: "100vh" }}
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: "top",
@@ -75,24 +75,70 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <p>Shop</p>
-      </MenuItem>
-      <MenuItem>
-        <p>Order Reviews</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
+      <MenuItem disableRipple onClick={handleMenuClose}>
+        <NavLink
+          style={{
+            color: " #000",
+            fontWeight: "bold",
+            textDecoration: "none",
+            paddingBottom: "5px",
+            borderBottom: "2px solid transparent",
+          }}
+          activeStyle={{
+            color: "#fcc39d",
+            fontWeight: "bold",
+            borderBottom: "2px solid #fcc39d",
+          }}
+          to="/shop"
         >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+          Shop
+        </NavLink>
       </MenuItem>
+      <MenuItem disableRipple onClick={handleMenuClose}>
+        <NavLink
+          style={{
+            color: " #000",
+            fontWeight: "bold",
+            textDecoration: "none",
+            paddingBottom: "5px",
+          }}
+          activeStyle={{
+            color: "#fcc39d",
+            fontWeight: "bold",
+          }}
+          to="/revieworder"
+        >
+          Review Order
+        </NavLink>
+      </MenuItem>
+      {!user.email && (
+        <MenuItem>
+          <Link style={{ textDecoration: "none" }} to="/login">
+            <Button
+              color="secondary"
+              onClick={userSignOut}
+              variant="contained"
+              size="small"
+            >
+              Sign In
+            </Button>
+          </Link>
+        </MenuItem>
+      )}
+      {user?.email && (
+        <MenuItem onClick={handleProfileMenuOpen}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>Profile</p>
+        </MenuItem>
+      )}
     </Menu>
   );
 
@@ -152,17 +198,41 @@ const Header = () => {
                   Review Order
                 </NavLink>
               </MenuItem>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <MenuItem>
+                <Link style={{ textDecoration: "none" }} to="/login">
+                  <Button
+                    color="secondary"
+                    onClick={userSignOut}
+                    variant="contained"
+                    size="small"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+              </MenuItem>
+              {user?.email && (
+                <Button
+                  color="secondary"
+                  onClick={userSignOut}
+                  variant="outlined"
+                  size="small"
+                >
+                  Sign Out
+                </Button>
+              )}
+              {user?.email && (
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              )}
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
