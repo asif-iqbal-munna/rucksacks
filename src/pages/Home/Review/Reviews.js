@@ -8,7 +8,7 @@ const Reviews = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/reviews")
+      .get("http://safe-depths-81486.herokuapp.com/reviews")
       .then((res) => setReviews(res.data));
   }, []);
 

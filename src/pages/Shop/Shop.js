@@ -9,7 +9,7 @@ const Shop = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/products")
+      .get("http://safe-depths-81486.herokuapp.com/products")
       .then((res) => setProducts(res.data))
       .catch(function (error) {
         console.log(error);

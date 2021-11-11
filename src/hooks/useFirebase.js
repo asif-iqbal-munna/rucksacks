@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 
 firebaseInitialize();
@@ -16,12 +17,18 @@ const useFirebase = () => {
   const [loading, setLoading] = useState(true);
 
   const auth = getAuth();
-  const createUser = (email, password) => {
+  const createUser = (email, password, name) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
         setError("");
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        })
+          .then(() => {})
+          .catch((error) => {
+            setError(error.message);
+          });
       })
       .catch((error) => {
         setError(error.message);
@@ -33,7 +40,6 @@ const useFirebase = () => {
     setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
         const redirectURI = location?.state?.from || "/";
         history.push(redirectURI);
         setError("");
@@ -56,7 +62,7 @@ const useFirebase = () => {
       setLoading(false);
     });
     return () => unsubscribed;
-  }, []);
+  }, [auth]);
 
   const userSignOut = () => {
     setLoading(true);

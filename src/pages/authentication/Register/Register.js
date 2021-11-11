@@ -33,7 +33,7 @@ const Register = () => {
   const { user, createUser, error, loading } = useAuth();
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password);
+    createUser(data.email, data.password, data.name);
     reset();
   };
 
@@ -68,7 +68,6 @@ const Register = () => {
                 type="text"
                 variant="filled"
                 margin="dense"
-                // defaultValue={user?.email}
                 {...register("name", { required: true })}
               />
               <TextField
@@ -78,7 +77,6 @@ const Register = () => {
                 type="email"
                 variant="filled"
                 margin="dense"
-                // defaultValue={user?.email}
                 {...register("email", { required: true })}
               />
               {errors.email?.type === "required" && "email is required"}
@@ -89,7 +87,6 @@ const Register = () => {
                 type="password"
                 autoComplete="current-password"
                 variant="filled"
-                // defaultValue={user?.displayName}
                 margin="dense"
                 {...register("password", { required: true })}
               />

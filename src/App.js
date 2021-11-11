@@ -99,9 +99,9 @@ function App() {
             <Route path="/revieworder">
               <ReviewOrder />
             </Route>
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <DashBoard />
-            </Route>
+            </PrivateRoute>
             <Route path="*">
               <NotFound />
             </Route>
