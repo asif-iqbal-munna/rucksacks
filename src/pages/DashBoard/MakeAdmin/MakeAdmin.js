@@ -17,9 +17,16 @@ const inputBtn = {
 
 const MakeAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
-  const { user } = useAuth();
 
   const onSubmit = (data) => {
+    const user = { email: data.email };
+    axios.put(`http://localhost:8000/users/admin`, user).then((res) => {
+      if (res.data.modifiedCount) {
+        alert(`Role of ${data.email} has been upgraded to Admin`);
+      } else {
+        alert("Request Not Performed");
+      }
+    });
     reset();
   };
   return (

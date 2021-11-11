@@ -79,9 +79,7 @@ const useFirebase = () => {
 
   const saveUser = (name, email) => {
     const user = { displayName: name, email };
-    axios
-      .post("http://localhost:8000/users", user)
-      .then((res) => console.log(res));
+    axios.post("http://localhost:8000/users", user).then((res) => res);
   };
 
   return {
