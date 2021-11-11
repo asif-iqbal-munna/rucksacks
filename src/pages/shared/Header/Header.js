@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import { Button, Container } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";

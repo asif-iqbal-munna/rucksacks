@@ -31,7 +31,7 @@ const SingleOrder = ({ order, setFetch }) => {
       <Card sx={{ display: "flex" }}>
         <CardMedia
           component="img"
-          sx={{ width: 151 }}
+          sx={{ width: 120 }}
           image={img}
           alt="Live from space album cover"
         />
@@ -40,14 +40,24 @@ const SingleOrder = ({ order, setFetch }) => {
             <Typography component="div" variant="h5">
               {name}
             </Typography>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography
-                variant="subtitle1"
-                color="text.secondary"
-                component="div"
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              {price}
+            </Typography>
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", pt: 2 }}
+            >
+              <Button
+                onClick={() => handleDeleteOrder(order._id)}
+                variant="contained"
+                size="small"
+                color="primary"
               >
-                {price}
-              </Typography>
+                Cancel
+              </Button>
               <Box
                 style={{
                   backgroundColor: "#a34c4c",
@@ -61,15 +71,6 @@ const SingleOrder = ({ order, setFetch }) => {
                 </Typography>
               </Box>
             </Box>
-            <Button
-              onClick={() => handleDeleteOrder(order._id)}
-              variant="contained"
-              size="small"
-              color="primary"
-              sx={{ mt: 2 }}
-            >
-              Cancel Order
-            </Button>
           </CardContent>
         </Box>
       </Card>

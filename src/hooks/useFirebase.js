@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
   updateProfile,
 } from "firebase/auth";
+import axios from "axios";
 
 firebaseInitialize();
 
@@ -21,6 +22,7 @@ const useFirebase = () => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        const user = userCredential.user;
         setError("");
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -30,6 +32,7 @@ const useFirebase = () => {
             setError(error.message);
           });
         alert("Your Registration is successful");
+        saveUser(name, email);
         history.push("/");
       })
       .catch((error) => {
@@ -72,6 +75,13 @@ const useFirebase = () => {
       .then(() => {})
       .catch((error) => {})
       .finally(() => setLoading(false));
+  };
+
+  const saveUser = (name, email) => {
+    const user = { displayName: name, email };
+    axios
+      .post("http://localhost:8000/users", user)
+      .then((res) => console.log(res));
   };
 
   return {

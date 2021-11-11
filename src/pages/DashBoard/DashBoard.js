@@ -23,9 +23,17 @@ import { Link, NavLink } from "react-router-dom";
 import Orders from "./Orders/Orders";
 import Review from "./Review/Review";
 import Pay from "./Pay/Pay";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import HomeIcon from "@mui/icons-material/Home";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import ReorderIcon from "@mui/icons-material/Reorder";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import ManageOrders from "./ManageOrders/ManageOrders";
+import ManageProducts from "./ManageProducts/ManageProducts";
+import MakeAdmin from "./MakeAdmin/MakeAdmin";
+import AddProduct from "./AddProduct/AddProduct";
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 function DashBoard(props) {
   const { userSignOut } = useAuth();
@@ -82,6 +90,62 @@ function DashBoard(props) {
             style={{ textDecoration: "none", color: " #000" }}
           >
             <ListItemText> Pay</ListItemText>
+          </NavLink>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <ReorderIcon color="primary" />
+          </ListItemIcon>
+          <NavLink
+            activeStyle={{
+              color: "#961010",
+            }}
+            to={`${url}/manageorder`}
+            style={{ textDecoration: "none", color: " #000" }}
+          >
+            <ListItemText> Manage All Orders</ListItemText>
+          </NavLink>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <HandymanIcon color="primary" />
+          </ListItemIcon>
+          <NavLink
+            activeStyle={{
+              color: "#961010",
+            }}
+            to={`${url}/manageproduct`}
+            style={{ textDecoration: "none", color: " #000" }}
+          >
+            <ListItemText> Manage Products</ListItemText>
+          </NavLink>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <AdminPanelSettingsIcon color="primary" />
+          </ListItemIcon>
+          <NavLink
+            activeStyle={{
+              color: "#961010",
+            }}
+            to={`${url}/makeadmin`}
+            style={{ textDecoration: "none", color: " #000" }}
+          >
+            <ListItemText> Make Admin</ListItemText>
+          </NavLink>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <ShoppingBagIcon color="primary" />
+          </ListItemIcon>
+          <NavLink
+            activeStyle={{
+              color: "#961010",
+            }}
+            to={`${url}/addproduct`}
+            style={{ textDecoration: "none", color: " #000" }}
+          >
+            <ListItemText> Add A Product</ListItemText>
           </NavLink>
         </ListItem>
       </List>
@@ -189,6 +253,18 @@ function DashBoard(props) {
           </Route>
           <Route path={`${path}/pay`}>
             <Pay />
+          </Route>
+          <Route path={`${path}/manageorder`}>
+            <ManageOrders />
+          </Route>
+          <Route path={`${path}/manageproduct`}>
+            <ManageProducts />
+          </Route>
+          <Route path={`${path}/makeadmin`}>
+            <MakeAdmin />
+          </Route>
+          <Route path={`${path}/addproduct`}>
+            <AddProduct />
           </Route>
         </Switch>
       </Box>

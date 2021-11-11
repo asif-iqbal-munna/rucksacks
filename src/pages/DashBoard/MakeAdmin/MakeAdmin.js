@@ -15,19 +15,11 @@ const inputBtn = {
   marginTop: "10px",
 };
 
-const Review = () => {
+const MakeAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
   const { user } = useAuth();
 
   const onSubmit = (data) => {
-    data.name = user.displayName;
-    axios.post("http://localhost:8000/reviews", data).then((res) => {
-      if (res.data.insertedId) {
-        alert(
-          "You Successfully Submitted Your Review. Thanks For Your Feedback"
-        );
-      }
-    });
     reset();
   };
   return (
@@ -38,27 +30,21 @@ const Review = () => {
     >
       <TextField
         required
-        label="Rating 1 to 5"
+        label="Email"
         fullWidth
-        type="number"
+        type="email"
         variant="filled"
         margin="dense"
-        {...register("rating", { min: 1, max: 5 })}
+        {...register("email")}
       />
-      <TextField
-        required
-        label="Your review"
-        fullWidth
-        type="text"
-        variant="filled"
-        margin="dense"
-        multiline
-        rows={4}
-        {...register("review", { required: true })}
+      <input
+        style={inputBtn}
+        type="submit"
+        value="Make Admin"
+        component="button"
       />
-      <input style={inputBtn} type="submit" value="Submit" component="button" />
     </Box>
   );
 };
 
-export default Review;
+export default MakeAdmin;
