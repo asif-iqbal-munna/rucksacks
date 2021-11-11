@@ -20,10 +20,6 @@ const Header = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -111,6 +107,25 @@ const Header = () => {
           Review Order
         </NavLink>
       </MenuItem>
+      {user?.email && (
+        <MenuItem disableRipple onClick={handleMenuClose}>
+          <NavLink
+            style={{
+              color: " #000",
+              fontWeight: "bold",
+              textDecoration: "none",
+              paddingBottom: "5px",
+            }}
+            activeStyle={{
+              color: "#fcc39d",
+              fontWeight: "bold",
+            }}
+            to="/dashboard"
+          >
+            Dashboard
+          </NavLink>
+        </MenuItem>
+      )}
       {!user.email && (
         <MenuItem>
           <Link style={{ textDecoration: "none" }} to="/login">
@@ -125,18 +140,17 @@ const Header = () => {
           </Link>
         </MenuItem>
       )}
+
       {user?.email && (
-        <MenuItem onClick={handleProfileMenuOpen}>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
+        <MenuItem>
+          <Button
+            color="primary"
+            onClick={userSignOut}
+            variant="outlined"
+            size="small"
           >
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
+            Sign Out
+          </Button>
         </MenuItem>
       )}
     </Menu>
@@ -198,18 +212,41 @@ const Header = () => {
                   Review Order
                 </NavLink>
               </MenuItem>
-              <MenuItem>
-                <Link style={{ textDecoration: "none" }} to="/login">
-                  <Button
-                    color="secondary"
-                    onClick={userSignOut}
-                    variant="contained"
-                    size="small"
+              {user?.email && (
+                <MenuItem disableRipple onClick={handleMenuClose}>
+                  <NavLink
+                    style={{
+                      color: " #fff",
+                      fontWeight: "bold",
+                      textDecoration: "none",
+                      paddingBottom: "5px",
+                      borderBottom: "2px solid transparent",
+                    }}
+                    activeStyle={{
+                      color: "#fcc39d",
+                      fontWeight: "bold",
+                      borderBottom: "2px solid #fcc39d",
+                    }}
+                    to="/dashboard"
                   >
-                    Sign In
-                  </Button>
-                </Link>
-              </MenuItem>
+                    Dashboard
+                  </NavLink>
+                </MenuItem>
+              )}
+              {!user.email && (
+                <MenuItem>
+                  <Link style={{ textDecoration: "none" }} to="/login">
+                    <Button
+                      color="secondary"
+                      onClick={userSignOut}
+                      variant="contained"
+                      size="small"
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                </MenuItem>
+              )}
               {user?.email && (
                 <Button
                   color="secondary"
@@ -219,19 +256,6 @@ const Header = () => {
                 >
                   Sign Out
                 </Button>
-              )}
-              {user?.email && (
-                <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
               )}
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>

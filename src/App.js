@@ -9,6 +9,8 @@ import OrderProduct from "./pages/OrderProduct/OrderProduct";
 import Login from "./pages/authentication/Login/Login";
 import Register from "./pages/authentication/Register/Register";
 import AuthProvider from "./context/AuthProvider";
+import DashBoard from "./pages/DashBoard/DashBoard";
+import PrivateRoute from "./pages/authentication/Login/PrivateRoute";
 
 const theme = createTheme({
   palette: {
@@ -85,9 +87,9 @@ function App() {
             <Route path="/shop">
               <Shop />
             </Route>
-            <Route path="/product/:id">
+            <PrivateRoute path="/product/:id">
               <OrderProduct />
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login />
             </Route>
@@ -96,6 +98,9 @@ function App() {
             </Route>
             <Route path="/revieworder">
               <ReviewOrder />
+            </Route>
+            <Route path="/dashboard">
+              <DashBoard />
             </Route>
             <Route path="*">
               <NotFound />
