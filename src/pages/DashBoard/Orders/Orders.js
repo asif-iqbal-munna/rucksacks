@@ -12,7 +12,7 @@ const Orders = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/orders/${email}`)
+      .get(`https://safe-depths-81486.herokuapp.com/orders/${email}`)
       .then((res) => setOrders(res.data))
       .then((err) => console.log(err));
   }, [email, fetch]);

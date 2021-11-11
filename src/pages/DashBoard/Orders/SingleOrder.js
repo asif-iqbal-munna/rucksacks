@@ -15,7 +15,7 @@ const SingleOrder = ({ order, setFetch }) => {
     const proceed = window.confirm("Are you sure you want to delete the user?");
     if (proceed) {
       axios
-        .delete(`http://localhost:8000/orders/${id}`)
+        .delete(`https://safe-depths-81486.herokuapp.com/orders/${id}`)
         .then((res) => {
           if (res?.data?.deletedCount) {
             alert("That Order Is Deleted");

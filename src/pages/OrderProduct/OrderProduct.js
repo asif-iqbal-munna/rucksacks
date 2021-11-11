@@ -40,7 +40,7 @@ const OrderProduct = () => {
     data.status = "pending";
     data.product = product;
     axios
-      .post("http://localhost:8000/orders", data)
+      .post("https://safe-depths-81486.herokuapp.com/orders", data)
       .then((res) => {
         if (res.data?.insertedId) {
           alert("You have Has Been Placed Successfully");
