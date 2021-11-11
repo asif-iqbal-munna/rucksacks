@@ -11,6 +11,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import { useHistory, useLocation } from "react-router-dom";
 
 const inputBtn = {
   backgroundColor: "#961010",
@@ -26,13 +27,17 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+  const location = useLocation();
+  const history = useHistory();
 
   const { user, error, userSignIn, loading } = useAuth();
 
   const onSubmit = (data) => {
-    userSignIn(data.email, data.password);
+    userSignIn(data.email, data.password, history, location);
+    reset();
   };
 
   return (

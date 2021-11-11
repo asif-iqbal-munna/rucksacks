@@ -26,6 +26,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -33,6 +34,7 @@ const Register = () => {
 
   const onSubmit = (data) => {
     createUser(data.email, data.password);
+    reset();
   };
 
   return (
