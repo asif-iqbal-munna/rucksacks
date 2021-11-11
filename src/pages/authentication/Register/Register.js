@@ -9,7 +9,7 @@ import {
 import { Box } from "@mui/system";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 
 const inputBtn = {
@@ -29,13 +29,15 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const history = useHistory();
 
   const { user, createUser, error, loading } = useAuth();
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password, data.name);
+    createUser(data.email, data.password, data.name, history);
     reset();
   };
+
 
   return (
     <>

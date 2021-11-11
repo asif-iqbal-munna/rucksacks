@@ -18,7 +18,7 @@ const Reviews = () => {
         See What Our Customers Says
       </Typography>
       <Grid container spacing={6}>
-        {reviews.map((review) => (
+        {reviews.slice(0, 4).map((review) => (
           <SingleReview key={review._id} reviews={review} />
         ))}
       </Grid>

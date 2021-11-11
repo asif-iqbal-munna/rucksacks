@@ -5,7 +5,7 @@ const SingleReview = ({ reviews }) => {
   const { name, review, rating } = reviews;
 
   return (
-    <Grid item xs={6} sm={4} md={3}>
+    <Grid item xs={12} sm={6} md={3}>
       <Card>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>

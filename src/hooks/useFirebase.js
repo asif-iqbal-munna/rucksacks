@@ -17,7 +17,7 @@ const useFirebase = () => {
   const [loading, setLoading] = useState(true);
 
   const auth = getAuth();
-  const createUser = (email, password, name) => {
+  const createUser = (email, password, name, history) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -29,6 +29,8 @@ const useFirebase = () => {
           .catch((error) => {
             setError(error.message);
           });
+        alert("Your Registration is successful");
+        history.push("/");
       })
       .catch((error) => {
         setError(error.message);

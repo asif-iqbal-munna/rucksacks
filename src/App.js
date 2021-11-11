@@ -32,7 +32,7 @@ theme.typography.h5 = {
     fontSize: "1.3rem",
   },
   [theme.breakpoints.up("md")]: {
-    fontSize: "1.8rem",
+    fontSize: "1.5rem",
   },
 };
 theme.typography.h4 = {

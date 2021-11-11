@@ -39,8 +39,14 @@ const OrderProduct = () => {
   const onSubmit = (data) => {
     data.status = "pending";
     data.product = product;
-    console.log(data);
-    // axios.post("/orders", data).then((res) => console.log(res));
+    axios
+      .post("http://localhost:8000/orders", data)
+      .then((res) => {
+        if (res.data?.insertedId) {
+          alert("You have Has Been Placed Successfully");
+        }
+      })
+      .then((err) => console.log(err));
 
     reset();
   };
