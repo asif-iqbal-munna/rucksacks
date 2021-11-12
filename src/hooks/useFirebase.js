@@ -70,9 +70,9 @@ const useFirebase = () => {
   }, [auth]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/users/${user.email}`)
-      .then((res) => setAdmin(res.data.admin));
+    axios.get(`http://localhost:8000/users/${user.email}`).then((res) => {
+      setAdmin(res.data.admin);
+    });
   }, [user.email]);
 
   const userSignOut = () => {
