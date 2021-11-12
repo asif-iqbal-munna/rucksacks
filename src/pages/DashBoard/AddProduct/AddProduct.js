@@ -2,6 +2,7 @@ import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React from "react";
+import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
 
 const inputBtn = {
@@ -17,68 +18,73 @@ const inputBtn = {
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    axios.post("https://safe-depths-81486.herokuapp.com/products", data).then((res) => {
-      if (res.data?.insertedId) {
-        alert("This Product Is Added Successfully");
-      }
-    });
+    axios
+      .post("https://safe-depths-81486.herokuapp.com/products", data)
+      .then((res) => {
+        if (res.data?.insertedId) {
+          alert("This Product Is Added Successfully");
+        }
+      });
     reset();
   };
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-      style={{ maxWidth: "700px" }}
-    >
-      <TextField
-        required
-        label="Product Name"
-        fullWidth
-        type="text"
-        variant="filled"
-        margin="dense"
-        {...register("name")}
-      />
-      <TextField
-        required
-        label="Brand"
-        fullWidth
-        type="text"
-        variant="filled"
-        margin="dense"
-        {...register("brand")}
-      />
-      <TextField
-        required
-        label="Price"
-        fullWidth
-        type="text"
-        variant="filled"
-        margin="dense"
-        {...register("price")}
-      />
-      <TextField
-        required
-        label="Image Url"
-        fullWidth
-        type="url"
-        variant="filled"
-        margin="dense"
-        {...register("img")}
-      />
-      <TextField
-        required
-        label="Description"
-        fullWidth
-        type="url"
-        variant="filled"
-        margin="dense"
-        multiline
-        rows={4}
-        {...register("description")}
-      />
-      <input style={inputBtn} type="submit" value="Add" component="button" />
-    </Box>
+    <>
+      <Typography variant="h4">Add Product</Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ maxWidth: "700px" }}
+      >
+        <TextField
+          required
+          label="Product Name"
+          fullWidth
+          type="text"
+          variant="filled"
+          margin="dense"
+          {...register("name")}
+        />
+        <TextField
+          required
+          label="Brand"
+          fullWidth
+          type="text"
+          variant="filled"
+          margin="dense"
+          {...register("brand")}
+        />
+        <TextField
+          required
+          label="Price"
+          fullWidth
+          type="text"
+          variant="filled"
+          margin="dense"
+          {...register("price")}
+        />
+        <TextField
+          required
+          label="Image Url"
+          fullWidth
+          type="url"
+          variant="filled"
+          margin="dense"
+          {...register("img")}
+        />
+        <TextField
+          required
+          label="Description"
+          fullWidth
+          type="url"
+          variant="filled"
+          margin="dense"
+          multiline
+          rows={4}
+          {...register("description")}
+        />
+        <input style={inputBtn} type="submit" value="Add" component="button" />
+      </Box>
+    </>
   );
 };
 

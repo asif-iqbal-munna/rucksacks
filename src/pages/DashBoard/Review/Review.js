@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React from "react";
@@ -21,43 +21,53 @@ const Review = () => {
 
   const onSubmit = (data) => {
     data.name = user.displayName;
-    axios.post("https://safe-depths-81486.herokuapp.com/reviews", data).then((res) => {
-      if (res.data.insertedId) {
-        alert(
-          "You Successfully Submitted Your Review. Thanks For Your Feedback"
-        );
-      }
-    });
+    axios
+      .post("https://safe-depths-81486.herokuapp.com/reviews", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert(
+            "You Successfully Submitted Your Review. Thanks For Your Feedback"
+          );
+        }
+      });
     reset();
   };
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-      style={{ maxWidth: "700px" }}
-    >
-      <TextField
-        required
-        label="Rating 1 to 5"
-        fullWidth
-        type="number"
-        variant="filled"
-        margin="dense"
-        {...register("rating", { min: 1, max: 5 })}
-      />
-      <TextField
-        required
-        label="Your review"
-        fullWidth
-        type="text"
-        variant="filled"
-        margin="dense"
-        multiline
-        rows={4}
-        {...register("review", { required: true })}
-      />
-      <input style={inputBtn} type="submit" value="Submit" component="button" />
-    </Box>
+    <>
+      <Typography variant="h4">Your Feedback</Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ maxWidth: "700px" }}
+      >
+        <TextField
+          required
+          label="Rating 1 to 5"
+          fullWidth
+          type="number"
+          variant="filled"
+          margin="dense"
+          {...register("rating", { min: 1, max: 5 })}
+        />
+        <TextField
+          required
+          label="Your review"
+          fullWidth
+          type="text"
+          variant="filled"
+          margin="dense"
+          multiline
+          rows={4}
+          {...register("review", { required: true })}
+        />
+        <input
+          style={inputBtn}
+          type="submit"
+          value="Submit"
+          component="button"
+        />
+      </Box>
+    </>
   );
 };
 

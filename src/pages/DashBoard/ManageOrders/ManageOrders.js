@@ -6,46 +6,87 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import { Button, Typography } from "@mui/material";
 
 export default function BasicTable() {
   const [orderData, setOrderData] = useState([]);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     axios
       .get("http://localhost:8000/orders")
       .then((res) => setOrderData(res.data));
-  }, []);
+  }, [load]);
+
+  const handleApprove = (id) => {
+    setLoad(true);
+    axios.put(`http://localhost:8000/orders/manage/${id}`).then((res) => {
+      console.log(res);
+      if (res.data?.modifiedCount) {
+        setLoad(false);
+        alert("This Order Is Approved");
+      }
+    });
+  };
+  const handleDelete = (id) => {
+    setLoad(true);
+    axios.delete(`http://localhost:8000/orders/manage/${id}`).then((res) => {
+      if (res?.data?.deletedCount) {
+        setLoad(false);
+        alert("This Order Is Deleted");
+      }
+    });
+  };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Product&nbsp;</TableCell>
-            <TableCell align="center">Carbs&nbsp;</TableCell>
-            <TableCell align="center">Action&nbsp;</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {orderData.map((row) => (
-            <TableRow
-              key={row._id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="center">{row?.product?.name}</TableCell>
-              <TableCell align="center">{row.fat}</TableCell>
-              <TableCell align="center">{row.carbs}</TableCell>
-              <TableCell align="center">{row.protein}</TableCell>
+    <>
+      <Typography variant="h4">Manage Orders</Typography>
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Name</TableCell>
+              <TableCell align="center">Email</TableCell>
+              <TableCell align="center">Product&nbsp;</TableCell>
+              <TableCell align="center">Carbs&nbsp;</TableCell>
+              <TableCell align="center">Status Update&nbsp;</TableCell>
+              <TableCell align="center">Delete&nbsp;</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {orderData.map((row) => (
+              <TableRow
+                key={row._id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center" s component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="center">{row.email}</TableCell>
+                <TableCell align="center">{row?.product?.name}</TableCell>
+                <TableCell align="center">{row.status}</TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="contained"
+                    onClick={() => handleApprove(row?._id)}
+                  >
+                    Approve
+                  </Button>
+                </TableCell>
+                <TableCell align="center">
+                  <DeleteIcon
+                    style={{ cursor: " pointer" }}
+                    color="primary"
+                    onClick={() => handleDelete(row?._id)}
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }

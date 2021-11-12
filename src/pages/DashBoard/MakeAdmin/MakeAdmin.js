@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React from "react";
@@ -19,37 +19,42 @@ const MakeAdmin = () => {
 
   const onSubmit = (data) => {
     const user = { email: data.email };
-    axios.put(`https://safe-depths-81486.herokuapp.com/users/admin`, user).then((res) => {
-      if (res.data.modifiedCount) {
-        alert(`Role of ${data.email} has been upgraded to Admin`);
-      } else {
-        alert("Request Not Performed");
-      }
-    });
+    axios
+      .put(`https://safe-depths-81486.herokuapp.com/users/admin`, user)
+      .then((res) => {
+        if (res.data?.modifiedCount) {
+          alert(`Role of ${data.email} has been upgraded to Admin`);
+        } else {
+          alert("Request Not Performed");
+        }
+      });
     reset();
   };
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-      style={{ maxWidth: "700px" }}
-    >
-      <TextField
-        required
-        label="Email"
-        fullWidth
-        type="email"
-        variant="filled"
-        margin="dense"
-        {...register("email")}
-      />
-      <input
-        style={inputBtn}
-        type="submit"
-        value="Make Admin"
-        component="button"
-      />
-    </Box>
+    <>
+      <Typography variant="h4">Make Admin</Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ maxWidth: "700px" }}
+      >
+        <TextField
+          required
+          label="Email"
+          fullWidth
+          type="email"
+          variant="filled"
+          margin="dense"
+          {...register("email")}
+        />
+        <input
+          style={inputBtn}
+          type="submit"
+          value="Make Admin"
+          component="button"
+        />
+      </Box>
+    </>
   );
 };
 

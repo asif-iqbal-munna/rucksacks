@@ -34,7 +34,7 @@ import MakeAdmin from "./MakeAdmin/MakeAdmin";
 import AddProduct from "./AddProduct/AddProduct";
 import AdminRoute from "../authentication/Login/AdminRoute";
 
-const drawerWidth = 280;
+const drawerWidth = 250;
 
 function DashBoard(props) {
   const { userSignOut, admin } = useAuth();
