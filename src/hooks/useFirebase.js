@@ -70,7 +70,7 @@ const useFirebase = () => {
   }, [auth]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/users/${user.email}`).then((res) => {
+    axios.get(`https://safe-depths-81486.herokuapp.com/users/${user.email}`).then((res) => {
       setAdmin(res.data.admin);
     });
   }, [user.email]);
@@ -85,7 +85,7 @@ const useFirebase = () => {
 
   const saveUser = (name, email) => {
     const user = { displayName: name, email };
-    axios.post("http://localhost:8000/users", user).then((res) => res);
+    axios.post("https://safe-depths-81486.herokuapp.com/users", user).then((res) => res);
   };
 
   return {

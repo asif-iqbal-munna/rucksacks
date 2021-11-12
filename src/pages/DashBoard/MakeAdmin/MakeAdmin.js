@@ -19,7 +19,7 @@ const MakeAdmin = () => {
 
   const onSubmit = (data) => {
     const user = { email: data.email };
-    axios.put(`http://localhost:8000/users/admin`, user).then((res) => {
+    axios.put(`https://safe-depths-81486.herokuapp.com/users/admin`, user).then((res) => {
       if (res.data.modifiedCount) {
         alert(`Role of ${data.email} has been upgraded to Admin`);
       } else {

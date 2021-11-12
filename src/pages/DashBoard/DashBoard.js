@@ -96,34 +96,6 @@ function DashBoard(props) {
           <>
             <ListItem button>
               <ListItemIcon>
-                <ReorderIcon color="primary" />
-              </ListItemIcon>
-              <NavLink
-                activeStyle={{
-                  color: "#961010",
-                }}
-                to={`${url}/manageorder`}
-                style={{ textDecoration: "none", color: " #000" }}
-              >
-                <ListItemText> Manage All Orders</ListItemText>
-              </NavLink>
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <HandymanIcon color="primary" />
-              </ListItemIcon>
-              <NavLink
-                activeStyle={{
-                  color: "#961010",
-                }}
-                to={`${url}/manageproduct`}
-                style={{ textDecoration: "none", color: " #000" }}
-              >
-                <ListItemText> Manage Products</ListItemText>
-              </NavLink>
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
                 <AdminPanelSettingsIcon color="primary" />
               </ListItemIcon>
               <NavLink
@@ -148,6 +120,34 @@ function DashBoard(props) {
                 style={{ textDecoration: "none", color: " #000" }}
               >
                 <ListItemText> Add A Product</ListItemText>
+              </NavLink>
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <ReorderIcon color="primary" />
+              </ListItemIcon>
+              <NavLink
+                activeStyle={{
+                  color: "#961010",
+                }}
+                to={`${url}/manageorder`}
+                style={{ textDecoration: "none", color: " #000" }}
+              >
+                <ListItemText> Manage All Orders</ListItemText>
+              </NavLink>
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <HandymanIcon color="primary" />
+              </ListItemIcon>
+              <NavLink
+                activeStyle={{
+                  color: "#961010",
+                }}
+                to={`${url}/manageproduct`}
+                style={{ textDecoration: "none", color: " #000" }}
+              >
+                <ListItemText> Manage Products</ListItemText>
               </NavLink>
             </ListItem>
           </>

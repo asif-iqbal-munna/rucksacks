@@ -27,21 +27,21 @@ const theme = createTheme({
 });
 
 theme.typography.h5 = {
-  fontSize: "1rem",
+  fontSize: ".8rem",
   "@media (min-width:600px)": {
-    fontSize: "1.3rem",
+    fontSize: "1.1rem",
   },
   [theme.breakpoints.up("md")]: {
-    fontSize: "1.5rem",
+    fontSize: "1.3rem",
   },
 };
 theme.typography.h4 = {
-  fontSize: "1.1rem",
+  fontSize: "1rem",
   "@media (min-width:600px)": {
     fontSize: "1.2rem",
   },
   [theme.breakpoints.up("md")]: {
-    fontSize: "1.4rem",
+    fontSize: "1.6rem",
   },
 };
 theme.typography.h3 = {

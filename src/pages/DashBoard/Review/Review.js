@@ -21,7 +21,7 @@ const Review = () => {
 
   const onSubmit = (data) => {
     data.name = user.displayName;
-    axios.post("http://localhost:8000/reviews", data).then((res) => {
+    axios.post("https://safe-depths-81486.herokuapp.com/reviews", data).then((res) => {
       if (res.data.insertedId) {
         alert(
           "You Successfully Submitted Your Review. Thanks For Your Feedback"

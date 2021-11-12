@@ -11,7 +11,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SingleProduct = ({ product }) => {
-  const { name, img, price, _id } = product;
+  const { name, img, price, _id, brand } = product;
   return (
     <Grid item xs={2} sm={3} md={3}>
       <Card>
@@ -22,7 +22,20 @@ const SingleProduct = ({ product }) => {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography
+            gutterBottom
+            variant="h4"
+            style={{ textTransform: "capitalize" }}
+            component="div"
+          >
+            {brand}
+          </Typography>
+          <Typography
+            gutterBottom
+            variant="h5"
+            style={{ textTransform: "capitalize" }}
+            component="div"
+          >
             {name}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">

@@ -17,7 +17,7 @@ const inputBtn = {
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    axios.post("http://localhost:8000/products", data).then((res) => {
+    axios.post("https://safe-depths-81486.herokuapp.com/products", data).then((res) => {
       if (res.data?.insertedId) {
         alert("This Product Is Added Successfully");
       }
