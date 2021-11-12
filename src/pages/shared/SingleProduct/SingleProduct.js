@@ -23,7 +23,6 @@ const SingleProduct = ({ product }) => {
         />
         <CardContent>
           <Typography
-            gutterBottom
             variant="h4"
             style={{ textTransform: "capitalize" }}
             component="div"
@@ -31,14 +30,13 @@ const SingleProduct = ({ product }) => {
             {brand}
           </Typography>
           <Typography
-            gutterBottom
             variant="h5"
             style={{ textTransform: "capitalize" }}
             component="div"
           >
             {name}
           </Typography>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography variant="h5" component="div">
             ${price}
           </Typography>
         </CardContent>
