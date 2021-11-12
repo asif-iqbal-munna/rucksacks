@@ -16,13 +16,13 @@ export default function BasicTable() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/orders")
+      .get("https://safe-depths-81486.herokuapp.com/orders")
       .then((res) => setOrderData(res.data));
   }, [load]);
 
   const handleApprove = (id) => {
     setLoad(true);
-    axios.put(`http://localhost:8000/orders/manage/${id}`).then((res) => {
+    axios.put(`https://safe-depths-81486.herokuapp.com/orders/manage/${id}`).then((res) => {
       console.log(res);
       if (res.data?.modifiedCount) {
         setLoad(false);
@@ -32,7 +32,7 @@ export default function BasicTable() {
   };
   const handleDelete = (id) => {
     setLoad(true);
-    axios.delete(`http://localhost:8000/orders/manage/${id}`).then((res) => {
+    axios.delete(`https://safe-depths-81486.herokuapp.com/orders/manage/${id}`).then((res) => {
       if (res?.data?.deletedCount) {
         setLoad(false);
         alert("This Order Is Deleted");

@@ -15,14 +15,14 @@ const ManageProducts = () => {
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/products").then((res) => {
+    axios.get("https://safe-depths-81486.herokuapp.com/products").then((res) => {
       setProducts(res.data);
     });
   }, [load]);
 
   const handleDelete = (id) => {
     setLoad(true);
-    axios.delete(`http://localhost:8000/products/${id}`).then((res) => {
+    axios.delete(`https://safe-depths-81486.herokuapp.com/products/${id}`).then((res) => {
       if (res?.data?.deletedCount) {
         alert("This product is Deleted");
         setLoad(false);
