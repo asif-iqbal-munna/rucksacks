@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -16,8 +17,12 @@ const inputBtn = {
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
-    // reset();
+    axios.post("http://localhost:8000/products", data).then((res) => {
+      if (res.data?.insertedId) {
+        alert("This Product Is Added Successfully");
+      }
+    });
+    reset();
   };
   return (
     <Box
@@ -36,12 +41,21 @@ const AddProduct = () => {
       />
       <TextField
         required
-        label="Price"
+        label="Brand"
         fullWidth
-        type="number"
+        type="text"
         variant="filled"
         margin="dense"
-        {...register("price", { min: 1, max: 5 })}
+        {...register("brand")}
+      />
+      <TextField
+        required
+        label="Price"
+        fullWidth
+        type="text"
+        variant="filled"
+        margin="dense"
+        {...register("price")}
       />
       <TextField
         required

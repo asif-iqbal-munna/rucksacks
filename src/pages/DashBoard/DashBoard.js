@@ -40,7 +40,6 @@ function DashBoard(props) {
   const { userSignOut, admin } = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  console.log(admin);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -249,6 +248,8 @@ function DashBoard(props) {
         }}
       >
         <Toolbar />
+
+        {/* DashBoard Routes */}
         <Switch>
           <Route exact path={`${path}`}>
             <Orders />
