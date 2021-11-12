@@ -58,16 +58,26 @@ const OrderProduct = () => {
         <Grid container spacing={8}>
           <Grid item xs={12} md={7}>
             <Box>
-              <img style={{ maxWidth: "300px" }} src={product.img} alt="bag" />
+              <img style={{ maxWidth: "300px" }} src={product?.img} alt="bag" />
             </Box>
             <Box>
-              <Typography variant="h3">${product.price}</Typography>
-              <Typography variant="h6">{product.description}</Typography>
+              <Typography variant="h3" gutterBottom>
+                ${product?.price}
+              </Typography>
+              <Typography variant="h4" gutterBottom>
+                {product?.brand}
+              </Typography>
+              <Typography variant="h3" gutterBottom>
+                {product?.name}
+              </Typography>
+              <Typography variant="h6" gutterBottom>
+                {product?.description}
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={5}>
             <Box>
-              <Typography>Process Order</Typography>
+              <Typography variant="h3">Process Order</Typography>
               {user.email && user.displayName && (
                 <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                   <TextField

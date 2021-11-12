@@ -35,8 +35,8 @@ const SingleOrder = ({ order, setFetch }) => {
           image={img}
           alt="Live from space album cover"
         />
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          <CardContent sx={{ flex: "1 0" }}>
             <Typography component="div" variant="h5">
               {name}
             </Typography>
