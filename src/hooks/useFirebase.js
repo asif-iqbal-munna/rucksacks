@@ -16,13 +16,13 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [admin, setAdmin] = useState(false);
 
   const auth = getAuth();
   const createUser = (email, password, name, history) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
         setError("");
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -69,6 +69,12 @@ const useFirebase = () => {
     return () => unsubscribed;
   }, [auth]);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/users/${user.email}`)
+      .then((res) => setAdmin(res.data.admin));
+  }, [user.email]);
+
   const userSignOut = () => {
     setLoading(true);
     signOut(auth)
@@ -89,6 +95,7 @@ const useFirebase = () => {
     userSignIn,
     userSignOut,
     loading,
+    admin,
     setError,
   };
 };
