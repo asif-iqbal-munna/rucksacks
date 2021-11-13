@@ -1,9 +1,11 @@
 import { TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+// import axios from "axios";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const inputBtn = {
   backgroundColor: "#961010",
@@ -18,27 +20,34 @@ const inputBtn = {
 const MakeAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
 
+  const { token } = useAuth();
+
+  const authAxios = axios.create({
+    baseURL: "https://safe-depths-81486.herokuapp.com",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
   const onSubmit = (data) => {
     const user = { email: data.email };
-    axios
-      .put(`https://safe-depths-81486.herokuapp.com/users/admin`, user)
-      .then((res) => {
-        if (res.data?.modifiedCount) {
-          Swal.fire({
-            title: "Success!",
-            text: `Role of ${data.email} has been upgraded to Admin`,
-            icon: "success",
-            confirmButtonText: "Ok",
-          });
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: `Request Failed`,
-            icon: "Error",
-            confirmButtonText: "Ok",
-          });
-        }
-      });
+    authAxios.put(`https://safe-depths-81486.herokuapp.com/users/admin`, user).then((res) => {
+      if (res.data?.modifiedCount) {
+        Swal.fire({
+          title: "Success!",
+          text: `Role of ${data.email} has been upgraded to Admin`,
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: `Request Failed`,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      }
+    });
     reset();
   };
   return (

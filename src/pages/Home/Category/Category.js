@@ -1,5 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Container, Grid } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -7,7 +6,7 @@ const Category = () => {
   return (
     <Container>
       <Grid container spacing={4} sx={{ py: 5 }}>
-        <Grid style={{ cursor: "pointer" }} item sx={12} md={4}>
+        <Grid style={{ cursor: "pointer" }} item xs={12} md={4}>
           <Link to="shop">
             <img
               style={{ width: "100%" }}
@@ -16,7 +15,7 @@ const Category = () => {
             />
           </Link>
         </Grid>
-        <Grid style={{ cursor: "pointer" }} item sx={12} md={4}>
+        <Grid style={{ cursor: "pointer" }} item xs={12} md={4}>
           <Link to="shop">
             <img
               style={{ width: "100%" }}
@@ -25,7 +24,7 @@ const Category = () => {
             />
           </Link>
         </Grid>
-        <Grid style={{ cursor: "pointer" }} item sx={12} md={4}>
+        <Grid style={{ cursor: "pointer" }} item xs={12} md={4}>
           <Link to="shop">
             <img
               style={{ width: "100%" }}

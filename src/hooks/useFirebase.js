@@ -7,6 +7,7 @@ import {
   signOut,
   onAuthStateChanged,
   updateProfile,
+  getIdToken,
 } from "firebase/auth";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -18,6 +19,7 @@ const useFirebase = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [admin, setAdmin] = useState(false);
+  const [token, setToken] = useState("");
 
   const auth = getAuth();
   const createUser = (email, password, name, history) => {
@@ -86,6 +88,9 @@ const useFirebase = () => {
       if (user) {
         setUser(user);
         setError("");
+        getIdToken(user).then((idToken) => {
+          setToken(idToken);
+        });
       } else {
         setUser({});
       }
@@ -124,6 +129,7 @@ const useFirebase = () => {
     userSignIn,
     userSignOut,
     loading,
+    token,
     admin,
     setError,
   };

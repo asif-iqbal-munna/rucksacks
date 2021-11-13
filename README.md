@@ -33,7 +33,7 @@ Rucksacks is a website that specifally sells all bags where one can order bags a
 - CRUD operatin is done by axios. You can add order, manage orders, approve orders, also delete order. you can also add products and review.
 - All forms in this site is handled by react hook form designed with MUI.
 - It's responsive both for mobile and tablet devices. There is a lot scope for improvement
-- Routing system is implemented with react router.
+- Routing system is implemented with react router. Has specific route for admin authenticated JWT token in the server side if any admin request send.
 
 ### Test Admin Route
 with email admin@admin.com
