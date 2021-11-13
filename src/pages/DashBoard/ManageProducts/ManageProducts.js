@@ -9,25 +9,40 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    axios.get("https://safe-depths-81486.herokuapp.com/products").then((res) => {
-      setProducts(res.data);
-    });
+    axios
+      .get("https://safe-depths-81486.herokuapp.com/products")
+      .then((res) => {
+        setProducts(res.data);
+      });
   }, [load]);
 
   const handleDelete = (id) => {
     setLoad(true);
-    axios.delete(`https://safe-depths-81486.herokuapp.com/products/${id}`).then((res) => {
-      if (res?.data?.deletedCount) {
-        alert("This product is Deleted");
-        setLoad(false);
-      }
-    });
+    const proceed = window.confirm(
+      "Are you sure you want to delete the product?"
+    );
+    if (proceed) {
+      axios
+        .delete(`https://safe-depths-81486.herokuapp.com/products/${id}`)
+        .then((res) => {
+          if (res?.data?.deletedCount) {
+            Swal.fire({
+              title: "Success!",
+              text: "You Order Is Deleted",
+              icon: "success",
+              confirmButtonText: "Ok",
+            });
+            setLoad(false);
+          }
+        });
+    }
   };
 
   return (
@@ -59,7 +74,7 @@ const ManageProducts = () => {
                   {row?.name}
                 </TableCell>
                 <TableCell align="center">{row?.brand}</TableCell>
-                <TableCell align="center">{row?.price}</TableCell>
+                <TableCell align="center">${row?.price}</TableCell>
 
                 <TableCell align="center">
                   <DeleteIcon

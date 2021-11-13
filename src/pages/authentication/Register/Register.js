@@ -1,6 +1,4 @@
 import {
-  Alert,
-  AlertTitle,
   CircularProgress,
   Container,
   TextField,
@@ -31,13 +29,12 @@ const Register = () => {
   } = useForm();
   const history = useHistory();
 
-  const { user, createUser, error, loading } = useAuth();
+  const { createUser, loading } = useAuth();
 
   const onSubmit = (data) => {
     createUser(data.email, data.password, data.name, history);
     reset();
   };
-
 
   return (
     <>
@@ -106,19 +103,6 @@ const Register = () => {
                   Please LogIn.
                 </Link>
               </Typography>
-              {user?.email && (
-                <Alert severity="success">
-                  <AlertTitle>Success</AlertTitle>
-                  Your Account Has Been Created Successfully
-                </Alert>
-              )}
-
-              {error && (
-                <Alert severity="error">
-                  <AlertTitle>Error</AlertTitle>
-                  {error}
-                </Alert>
-              )}
             </Box>
           </Box>
         </Container>

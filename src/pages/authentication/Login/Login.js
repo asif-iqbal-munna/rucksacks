@@ -1,6 +1,4 @@
 import {
-  Alert,
-  AlertTitle,
   CircularProgress,
   Container,
   TextField,
@@ -33,7 +31,7 @@ const Login = () => {
   const location = useLocation();
   const history = useHistory();
 
-  const { user, error, userSignIn, loading } = useAuth();
+  const { userSignIn, loading } = useAuth();
 
   const onSubmit = (data) => {
     userSignIn(data.email, data.password, history, location);
@@ -100,14 +98,14 @@ const Login = () => {
                   Please Register.
                 </Link>
               </Typography>
-              {user?.email ? (
-                <Alert severity="success">
-                  <AlertTitle>Success</AlertTitle>
-                  You Have Logged In Successfully
-                </Alert>
-              ) : (
-                ""
-              )}
+              {/* {user?.email
+                ? Swal.fire({
+                    title: "Error!",
+                    text: "Do you want to continue",
+                    icon: "error",
+                    confirmButtonText: "Cool",
+                  })
+                : ""}
 
               {error ? (
                 <Alert severity="error">
@@ -116,7 +114,7 @@ const Login = () => {
                 </Alert>
               ) : (
                 ""
-              )}
+              )} */}
             </Box>
           </Box>
         </Container>

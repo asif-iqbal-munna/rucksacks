@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const inputBtn = {
   backgroundColor: "#961010",
@@ -23,9 +24,19 @@ const MakeAdmin = () => {
       .put(`https://safe-depths-81486.herokuapp.com/users/admin`, user)
       .then((res) => {
         if (res.data?.modifiedCount) {
-          alert(`Role of ${data.email} has been upgraded to Admin`);
+          Swal.fire({
+            title: "Success!",
+            text: `Role of ${data.email} has been upgraded to Admin`,
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
         } else {
-          alert("Request Not Performed");
+          Swal.fire({
+            title: "Error!",
+            text: `Request Failed`,
+            icon: "Error",
+            confirmButtonText: "Ok",
+          });
         }
       });
     reset();

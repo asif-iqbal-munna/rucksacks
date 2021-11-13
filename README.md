@@ -33,3 +33,7 @@ Rucksacks is a website that specifally sells all bags where one can order bags a
 - All forms in this site is handled by react hook form designed with MUI.
 - It's responsive both for mobile and tablet devices. There is a lot scope for improvement
 - Routing system is implemented with react router.
+
+### Test Admin Route
+with email admin@admin.com
+password 123456

@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import { Button, Typography } from "@mui/material";
+import Swal from "sweetalert2";
 
 export default function BasicTable() {
   const [orderData, setOrderData] = useState([]);
@@ -22,22 +23,39 @@ export default function BasicTable() {
 
   const handleApprove = (id) => {
     setLoad(true);
-    axios.put(`https://safe-depths-81486.herokuapp.com/orders/manage/${id}`).then((res) => {
-      console.log(res);
-      if (res.data?.modifiedCount) {
-        setLoad(false);
-        alert("This Order Is Approved");
-      }
-    });
+    axios
+      .put(`https://safe-depths-81486.herokuapp.com/orders/manage/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data?.modifiedCount) {
+          setLoad(false);
+          Swal.fire({
+            title: "Success!",
+            text: `This Order Is Approved`,
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      });
   };
   const handleDelete = (id) => {
     setLoad(true);
-    axios.delete(`https://safe-depths-81486.herokuapp.com/orders/manage/${id}`).then((res) => {
-      if (res?.data?.deletedCount) {
-        setLoad(false);
-        alert("This Order Is Deleted");
-      }
-    });
+    const proceed = window.confirm("Are you sure you want to delete the user?");
+    if (proceed) {
+      axios
+        .delete(`https://safe-depths-81486.herokuapp.com/orders/manage/${id}`)
+        .then((res) => {
+          if (res?.data?.deletedCount) {
+            setLoad(false);
+            Swal.fire({
+              title: "Success!",
+              text: `This Order Is deleted`,
+              icon: "success",
+              confirmButtonText: "Ok",
+            });
+          }
+        });
+    }
   };
 
   return (

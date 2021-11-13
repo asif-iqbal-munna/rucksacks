@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, Grid } from "@mui/material";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const SingleOrder = ({ order, setFetch }) => {
   const { img, name, price } = order.product;
@@ -18,7 +19,12 @@ const SingleOrder = ({ order, setFetch }) => {
         .delete(`https://safe-depths-81486.herokuapp.com/orders/${id}`)
         .then((res) => {
           if (res?.data?.deletedCount) {
-            alert("That Order Is Deleted");
+            Swal.fire({
+              title: "Success!",
+              text: "You Order Is Deleted",
+              icon: "success",
+              confirmButtonText: "Ok",
+            });
             setFetch(false);
           }
         })

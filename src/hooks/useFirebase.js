@@ -9,6 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 firebaseInitialize();
 
@@ -23,6 +24,12 @@ const useFirebase = () => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        Swal.fire({
+          title: "Success!",
+          text: "You Have Successfully Registered!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
         setError("");
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -31,11 +38,16 @@ const useFirebase = () => {
           .catch((error) => {
             setError(error.message);
           });
-        alert("Your Registration is successful");
         saveUser(name, email);
         history.push("/");
       })
       .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
         setError(error.message);
       })
       .finally(() => setLoading(false));
@@ -45,12 +57,25 @@ const useFirebase = () => {
     setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        Swal.fire({
+          title: "Success!",
+          text: "You Have Successfully logged in!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
         const redirectURI = location?.state?.from || "/";
         history.push(redirectURI);
+
         setError("");
       })
       .catch((error) => {
         setError(error.message);
+        Swal.fire({
+          title: "Error!",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
       })
       .finally(() => setLoading(false));
   };
@@ -70,9 +95,11 @@ const useFirebase = () => {
   }, [auth]);
 
   useEffect(() => {
-    axios.get(`https://safe-depths-81486.herokuapp.com/users/${user.email}`).then((res) => {
-      setAdmin(res.data.admin);
-    });
+    axios
+      .get(`https://safe-depths-81486.herokuapp.com/users/${user.email}`)
+      .then((res) => {
+        setAdmin(res.data.admin);
+      });
   }, [user.email]);
 
   const userSignOut = () => {
@@ -85,7 +112,9 @@ const useFirebase = () => {
 
   const saveUser = (name, email) => {
     const user = { displayName: name, email };
-    axios.post("https://safe-depths-81486.herokuapp.com/users", user).then((res) => res);
+    axios
+      .post("https://safe-depths-81486.herokuapp.com/users", user)
+      .then((res) => res);
   };
 
   return {

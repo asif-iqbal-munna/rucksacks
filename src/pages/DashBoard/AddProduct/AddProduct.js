@@ -4,6 +4,7 @@ import axios from "axios";
 import React from "react";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const inputBtn = {
   backgroundColor: "#961010",
@@ -22,7 +23,12 @@ const AddProduct = () => {
       .post("https://safe-depths-81486.herokuapp.com/products", data)
       .then((res) => {
         if (res.data?.insertedId) {
-          alert("This Product Is Added Successfully");
+          Swal.fire({
+            title: "Success!",
+            text: `Product Has Been Added`,
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
         }
       });
     reset();

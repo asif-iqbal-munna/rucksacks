@@ -89,23 +89,6 @@ const Header = () => {
           Shop
         </NavLink>
       </MenuItem>
-      <MenuItem disableRipple onClick={handleMenuClose}>
-        <NavLink
-          style={{
-            color: " #000",
-            fontWeight: "bold",
-            textDecoration: "none",
-            paddingBottom: "5px",
-          }}
-          activeStyle={{
-            color: "#fcc39d",
-            fontWeight: "bold",
-          }}
-          to="/revieworder"
-        >
-          Review Order
-        </NavLink>
-      </MenuItem>
       {user?.email && (
         <MenuItem disableRipple onClick={handleMenuClose}>
           <NavLink
@@ -190,25 +173,6 @@ const Header = () => {
                   to="/shop"
                 >
                   Shop
-                </NavLink>
-              </MenuItem>
-              <MenuItem disableRipple onClick={handleMenuClose}>
-                <NavLink
-                  style={{
-                    color: " #fff",
-                    fontWeight: "bold",
-                    textDecoration: "none",
-                    paddingBottom: "5px",
-                    borderBottom: "2px solid transparent",
-                  }}
-                  activeStyle={{
-                    color: "#fcc39d",
-                    fontWeight: "bold",
-                    borderBottom: "2px solid #fcc39d",
-                  }}
-                  to="/revieworder"
-                >
-                  Review Order
                 </NavLink>
               </MenuItem>
               {user?.email && (

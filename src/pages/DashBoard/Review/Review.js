@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 
 const inputBtn = {
@@ -25,9 +26,12 @@ const Review = () => {
       .post("https://safe-depths-81486.herokuapp.com/reviews", data)
       .then((res) => {
         if (res.data.insertedId) {
-          alert(
-            "You Successfully Submitted Your Review. Thanks For Your Feedback"
-          );
+          Swal.fire({
+            title: "Success!",
+            text: "You Review Is Submitted",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
         }
       });
     reset();

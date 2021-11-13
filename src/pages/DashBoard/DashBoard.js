@@ -197,7 +197,7 @@ function DashBoard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h4" noWrap component="div">
-            your rucksack dashboard
+            Rucksacks
           </Typography>
         </Toolbar>
       </AppBar>
