@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
+import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import Header from "../shared/Header/Header";
 
@@ -43,7 +44,12 @@ const OrderProduct = () => {
       .post("https://safe-depths-81486.herokuapp.com/orders", data)
       .then((res) => {
         if (res.data?.insertedId) {
-          alert("You have Has Been Placed Successfully");
+          Swal.fire({
+            title: "Success!",
+            text: `Your Order Is Placed Successfully. Please, Wait Check For The Approvement.`,
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
         }
       })
       .then((err) => console.log(err));

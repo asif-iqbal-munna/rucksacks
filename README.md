@@ -17,6 +17,7 @@ Rucksacks is a website that specifally sells all bags where one can order bags a
 - Firebase
 - Axios
 - React Hook Form
+- Sweetalert2
 
 ### Client Side
 
