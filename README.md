@@ -4,7 +4,7 @@
 
 ### [Server Site Code Link](https://github.com/programming-hero-web-course-4/niche-website-client-side-asif-iqbal-munna)
 
-Rucksacks is a website that specifally sells all bags where one can order bags and also has option for them to add review. They can also manage their order.
+Rucksacks is a website that specifically sells all bags where one can order bags and also has an option for them to add reviews. They can also manage their order.
 
 # Technologies and packages used in this project
 
@@ -27,13 +27,13 @@ Rucksacks is a website that specifally sells all bags where one can order bags a
 - Cors
 - dotenv
 
-# Some Funtionalities Of The website
+# Some Functionalities Of The website
 
 - This website has firebase authentication for users' registration and login with email and password
-- CRUD operatin is done by axios. You can add order, manage orders, approve orders, also delete order. you can also add products and review.
-- All forms in this site is handled by react hook form designed with MUI.
-- It's responsive both for mobile and tablet devices. There is a lot scope for improvement
-- Routing system is implemented with react router. Has specific route for admin authenticated JWT token in the server side if any admin request send.
+- CRUD operations are done by Axios. You can add orders, manage orders, approve orders, also delete the order. you can also add products and reviews.
+- All forms in this site is handled by react-hook-form designed with MUI.
+- It's responsive both for mobile and tablet devices. There is a lot of scope for improvement
+- Routing system is implemented with react-router. Has specific route for admin authenticated JWT token in the server-side if any admin request send.
 
 ### Test Admin Route
 with email admin@admin.com
