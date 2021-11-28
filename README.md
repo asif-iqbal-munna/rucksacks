@@ -2,7 +2,7 @@
 
 ## [Live Site Link](https://rucksacks-9fc07.web.app/)
 
-### [Server Site Code Link](https://github.com/programming-hero-web-course-4/niche-website-client-side-asif-iqbal-munna)
+### [Server Site Code Link](https://github.com/asif-iqbal-munna/rucksacks-server)
 
 Rucksacks is a website that specifically sells all bags where one can order bags and also has an option for them to add reviews. They can also manage their order.
 
